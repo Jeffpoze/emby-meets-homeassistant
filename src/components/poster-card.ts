@@ -35,6 +35,23 @@ export class EmbyPosterCard extends LitElement {
         box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
         z-index: 1;
       }
+      .badge {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        min-width: 22px;
+        height: 22px;
+        padding: 0 6px;
+        border-radius: 11px;
+        background: var(--emby-accent-secondary);
+        color: white;
+        font-size: 0.7rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+      }
       .progress {
         position: absolute;
         left: 0;
@@ -94,6 +111,7 @@ export class EmbyPosterCard extends LitElement {
 
   render() {
     const pct = this.item?.userData?.playedPercentage;
+    const unplayed = this.item?.userData?.unplayedItemCount;
     return html`
       <div class="tile" style="background-image:url(${this.imageUrl})" @click=${this.onClick} tabindex="0">
         ${this.canPlay
@@ -101,6 +119,7 @@ export class EmbyPosterCard extends LitElement {
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
             </div>`
           : nothing}
+        ${unplayed ? html`<div class="badge">${unplayed}</div>` : nothing}
         ${pct ? html`<div class="progress"><div style="width:${pct}%"></div></div>` : nothing}
       </div>
       <div class="title">${this.item?.name}</div>

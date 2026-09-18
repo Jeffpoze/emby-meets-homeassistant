@@ -2,7 +2,7 @@ import { LitElement, html, css, nothing } from 'lit';
 import { CARD_NAME, CARD_TYPE, DEFAULT_PORT, DEFAULT_PROTOCOL, EDITOR_TYPE, PSEUDO_LIBRARY } from './const';
 import { Emby } from './modules/Emby';
 import { EmbyPlayController } from './modules/EmbyPlayController';
-import { matchesSearch } from './modules/utils';
+import { matchesSearch, parseEmbyHost } from './modules/utils';
 import { haTokens } from './styles/ha-tokens';
 import type { EmbyCardConfig, EmbyItem, EmbyView, HomeAssistant, ResolvedTarget } from './types';
 import './components/poster-grid';
@@ -94,7 +94,6 @@ export class EmbyMeetsHomeAssistant extends LitElement {
     if (!config.libraryName) throw new Error('emby-meets-homeassistant: "libraryName" is required');
 
     this._config = {
-      port: DEFAULT_PORT,
       protocol: DEFAULT_PROTOCOL,
       showSearch: true,
       showExtras: true,
@@ -103,12 +102,12 @@ export class EmbyMeetsHomeAssistant extends LitElement {
       ...config,
     };
 
-    this.emby = new Emby(
+    const { protocol, host, port } = parseEmbyHost(
       this._config.host,
-      this._config.port ?? DEFAULT_PORT,
       this._config.protocol ?? DEFAULT_PROTOCOL,
-      this._config.apiKey,
+      this._config.port ?? DEFAULT_PORT,
     );
+    this.emby = new Emby(host, port, protocol, this._config.apiKey);
     this.playController = new EmbyPlayController(this.hass, this.emby, this._config.devices ?? []);
     this._loadData();
   }

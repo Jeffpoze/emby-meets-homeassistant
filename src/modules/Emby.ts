@@ -41,6 +41,7 @@ function mapItem(raw: any): EmbyItem {
       played: raw.UserData.Played,
       playbackPositionTicks: raw.UserData.PlaybackPositionTicks,
       playedPercentage: raw.UserData.PlayedPercentage,
+      unplayedItemCount: raw.UserData.UnplayedItemCount,
     },
     imageTags: raw.ImageTags,
     backdropImageTags: raw.BackdropImageTags,
@@ -76,13 +77,14 @@ function mapProgram(raw: any): EmbyProgram {
 export class Emby {
   constructor(
     private host: string,
-    private port: number,
+    private port: number | undefined,
     private protocol: string,
     private apiKey: string,
   ) {}
 
   private baseUrl(): string {
-    return `${this.protocol}://${this.host}:${this.port}/emby`;
+    const portSuffix = this.port ? `:${this.port}` : '';
+    return `${this.protocol}://${this.host}${portSuffix}/emby`;
   }
 
   private buildUrl(path: string, params: Record<string, string | number | boolean | undefined> = {}): string {

@@ -1,6 +1,7 @@
 import { LitElement, html, nothing } from 'lit';
-import { EDITOR_TYPE, PSEUDO_LIBRARY } from './const';
+import { DEFAULT_PORT, DEFAULT_PROTOCOL, EDITOR_TYPE, PSEUDO_LIBRARY } from './const';
 import { Emby } from './modules/Emby';
+import { parseEmbyHost } from './modules/utils';
 import type { EmbyCardConfig, EmbyUser, EmbyView, HomeAssistant } from './types';
 
 const SCHEMA = [
@@ -34,12 +35,12 @@ export class EmbyMeetsHomeAssistantEditor extends LitElement {
   private async _refreshServerData() {
     if (!this._config?.host || !this._config?.apiKey) return;
     try {
-      const emby = new Emby(
+      const { protocol, host, port } = parseEmbyHost(
         this._config.host,
-        this._config.port ?? 8096,
-        this._config.protocol ?? 'http',
-        this._config.apiKey,
+        this._config.protocol ?? DEFAULT_PROTOCOL,
+        this._config.port ?? DEFAULT_PORT,
       );
+      const emby = new Emby(host, port, protocol, this._config.apiKey);
       this._users = await emby.getUsers();
       if (this._config.userId) {
         this._views = await emby.getViews(this._config.userId);

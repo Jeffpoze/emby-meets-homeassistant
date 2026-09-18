@@ -57,6 +57,7 @@ export interface EmbyItem {
     played?: boolean;
     playbackPositionTicks?: number;
     playedPercentage?: number;
+    unplayedItemCount?: number;
   };
   imageTags?: Record<string, string>;
   backdropImageTags?: string[];
