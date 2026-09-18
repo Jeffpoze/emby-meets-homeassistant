@@ -29,6 +29,16 @@ devices:
   - Living Room Apple TV
 ```
 
+### Active Sessions card
+
+A second, standalone card (`type: custom:emby-active-sessions`) shows currently connected Emby clients (idle vs. now-playing) and a "Scan Library" button:
+
+```yaml
+type: custom:emby-active-sessions
+host: https://emby.example.com
+apiKey: your-emby-api-key
+```
+
 ## Development
 
 ```bash
