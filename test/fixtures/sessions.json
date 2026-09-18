@@ -1,0 +1,20 @@
+[
+  {
+    "Id": "session-1",
+    "DeviceId": "device-1",
+    "DeviceName": "Living Room Apple TV",
+    "Client": "Emby for Apple TV",
+    "UserId": "user-1",
+    "SupportsRemoteControl": true,
+    "PlayableMediaTypes": ["Video"]
+  },
+  {
+    "Id": "session-2",
+    "DeviceId": "device-2",
+    "DeviceName": "Kids iPad",
+    "Client": "Emby Mobile",
+    "UserId": "user-1",
+    "SupportsRemoteControl": false,
+    "PlayableMediaTypes": ["Video"]
+  }
+]

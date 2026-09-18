@@ -1,0 +1,14 @@
+{
+  "Items": [
+    {
+      "Id": "item-1",
+      "Name": "Example Movie",
+      "Type": "Movie",
+      "ProductionYear": 2024,
+      "CommunityRating": 7.8,
+      "RunTimeTicks": 72000000000,
+      "Genres": ["Action", "Sci-Fi"],
+      "UserData": { "Played": false, "PlaybackPositionTicks": 0, "PlayedPercentage": 0 }
+    }
+  ]
+}
