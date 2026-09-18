@@ -9,6 +9,7 @@ import './components/poster-grid';
 import './components/search-bar';
 import './components/detail-panel';
 import './editor';
+import './active-sessions-card';
 
 const COLLECTION_TYPE_TO_ITEM_TYPE: Record<string, string> = {
   movies: 'Movie',

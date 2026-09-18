@@ -225,6 +225,10 @@ export class Emby {
     return raw.map(mapSession);
   }
 
+  async refreshLibrary(): Promise<void> {
+    await this.request('/Library/Refresh', {}, { method: 'POST' });
+  }
+
   imageUrl(
     itemId: string,
     type: 'Primary' | 'Backdrop' | 'Thumb' | 'Logo' = 'Primary',

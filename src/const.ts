@@ -2,6 +2,11 @@ export const CARD_TYPE = 'emby-meets-homeassistant';
 export const CARD_NAME = 'Emby Meets Home Assistant';
 export const EDITOR_TYPE = 'emby-meets-homeassistant-editor';
 
+export const ACTIVE_SESSIONS_CARD_TYPE = 'emby-active-sessions';
+export const ACTIVE_SESSIONS_CARD_NAME = 'Emby Active Sessions';
+export const ACTIVE_SESSIONS_EDITOR_TYPE = 'emby-active-sessions-editor';
+export const ACTIVE_SESSIONS_POLL_MS = 10_000;
+
 export const PSEUDO_LIBRARY = {
   CONTINUE_WATCHING: 'Continue Watching',
   NEXT_UP: 'Next Up',

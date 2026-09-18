@@ -27,6 +27,16 @@ export interface EmbyCardConfig {
   runAfter?: string;
 }
 
+export interface EmbyActiveSessionsConfig {
+  type: string;
+  host: string;
+  port?: number;
+  protocol?: 'http' | 'https';
+  apiKey: string;
+  title?: string;
+  showScanLibrary?: boolean;
+}
+
 export interface EmbyUser {
   id: string;
   name: string;
